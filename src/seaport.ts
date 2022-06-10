@@ -4143,7 +4143,62 @@ export class OpenSeaPort {
     ];
 
     // Estimate gas first
-    const encoded = this._wyvernProtocolReadOnly.wyvernExchange.atomicMatch_.getABIEncodedTransactionData(
+    // const encoded = this._wyvernProtocolReadOnly.wyvernExchange.atomicMatch_.getABIEncodedTransactionData( // Function deprecated
+    
+    const encoded = this.web3.eth.abi.encodeFunctionCall({
+    name: 'atomicMatch_',
+    outputs: [],
+    payable: true,
+    stateMutability: 'payable',
+    type: 'function',
+    constant: 'false', 
+    inputs: [
+      {
+        "name": "addrs",
+        "type": "address[14]"
+      },
+      {
+        "name": "uints",
+        "type": "uint256[18]"
+      },
+      {
+        "name": "feeMethodsSidesKindsHowToCalls",
+        "type": "uint8[8]"
+      },
+      {
+        "name": "calldataBuy",
+        "type": "bytes"
+      },
+      {
+        "name": "calldataSell",
+        "type": "bytes"
+      },
+      {
+        "name": "replacementPatternBuy",
+        "type": "bytes"
+      },
+      {
+        "name": "replacementPatternSell",
+        "type": "bytes"
+      },
+      {
+        "name": "staticExtradataBuy",
+        "type": "bytes"
+      },
+      {
+        "name": "staticExtradataSell",
+        "type": "bytes"
+      },
+      {
+        "name": "vs",
+        "type": "uint8[2]"
+      },
+      {
+        "name": "rssMetadata",
+        "type": "bytes32[5]"
+      }
+    ]
+    }, [
           args[0],
           args[1],
           args[2],
@@ -4155,7 +4210,8 @@ export class OpenSeaPort {
           args[8],
           args[9],
           args[10]
-        )
+    ]);
+     
 
       return {
         encoded: encoded,
