@@ -65,7 +65,6 @@ import {
   UniswapExchange,
 } from "./contracts";
 import {
-  MAX_ERROR_LENGTH,
   requireOrderCalldataCanMatch,
   requireOrdersCanMatch,
 } from "./debugging";
@@ -4076,7 +4075,7 @@ export class OpenSeaPort {
       matchMetadata: metadata,
     });
 
-    let txHash;
+//     let txHash;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const txnData: any = { from: accountAddress, value };
     const args: WyvernAtomicMatchParameters = [
